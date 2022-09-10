@@ -1,0 +1,102 @@
+---
+title: "Bar Charts"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    social: ['facebook','twitter','linkedin']
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+
+library(lattice)
+
+library(flexdashboard)
+```
+
+
+# Bar_Charts_001{data-icon=fa-bar-chart}
+
+
+Column {data-width=333}
+-----------------------------------------------------------------------
+
+### barplot
+
+```{r barplot,fig.align='center'}
+x <- table(mtcars$cyl)
+
+colores <- c("orange","blue","purple")
+
+barplot(x,xlab="Cilindros",ylab="Frecuencias",main="Número de Cilindros",col=colores)
+
+```
+
+Column {data-width=333}
+-----------------------------------------------------------------------
+
+### ggplot2
+
+```{r ggplot2,fig.align='center'}
+ggplot(mtcars,aes(cyl)) + geom_bar(fill=colores) + labs(x="Cillindros",y="Frecuencias",title="Número de Cilindros") + theme_dark()
+```
+
+Column {data-width=333}
+-----------------------------------------------------------------------
+
+### lattice
+
+```{r lattice,fig.align='center'}
+barchart(x,xlab="Cilindros",ylab="Frecuencias",main="Número de Cilindros",col=colores,horizontal=FALSE)
+```
+
+
+# Bar_Charts_002{data-icon=fa-bar-chart}
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+```{r,fig.align='center'}
+par(mfrow=c(1,2))
+
+y <- table(mtcars$gear)
+
+barplot(x,xlab="Cilindros",ylab="Frecuencias",main="Número de Cilindros",col=colores)
+
+barplot(y,xlab="Engranajes",ylab="Frecuencias",main="Número de Engranajes",col=rainbow(3))
+
+```
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+```{r,fig.align='center'}
+y <- table(mtcars$gear)
+
+barplot(y,xlab="Engranajes",ylab="Frecuencias",main="Número de Engranajes",col=rainbow(3))
+
+```
+
+# Bar_Charts_003{data-icon=fa-bar-chart}
+
+Column {data-width=1000}
+-----------------------------------------------------------------------
+
+
+```{r barplot_01,fig.align='center'}
+x <- table(mtcars$cyl)
+
+colores <- c("orange","blue","purple")
+
+barplot(x,xlab="Cilindros",ylab="Frecuencias",main="Número de Cilindros",col=colores)
+
+```
+
+
+
+
+

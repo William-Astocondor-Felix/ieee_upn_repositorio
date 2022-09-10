@@ -1,0 +1,62 @@
+---
+title: "Bar Charts"
+date: "`r Sys.Date()`"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: journal
+    social: ['facebook','twitter','linkedin','pinterest']
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+
+library(RMySQL)
+
+library(leaflet)
+
+library(leafem)
+
+library(fontawesome)
+
+city_table <- dbConnect(RMySQL::MySQL(),dbname='world',username='root',password='Limitless1978',host='localhost',port=3306)
+
+knitr::opts_chunk$set(echo = TRUE,connection="city_table")
+```
+
+##
+
+
+###
+
+```{sql connection=city_table,max.print=20}
+
+select * from city
+
+```
+
+
+
+##
+
+###
+
+```{r mapa, echo=FALSE}
+# Múltiples Marcadores
+
+cent_hist <- data.frame(lugar=c("Iglesia Nuestra Señora de La Merced","Convento Regina Angelorum","Puerta de la Misericordia"),latitud=c(18.47416921486365,18.471116404923126,18.468775880481004),    longitud=c(-69.88824745014279,-69.8871531089362,-69.89011426748678),               color=c("orange","blue","purple"))
+
+
+centro_historico <- leaflet(data=cent_hist) %>% 
+
+addTiles() %>%  
+
+addMarkers(lat=~latitud,lng=~longitud) %>% 
+
+addCircleMarkers(lat=~latitud,lng=~longitud,color=~color,radius=30)
+
+centro_historico
+```
+

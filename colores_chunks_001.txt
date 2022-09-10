@@ -1,0 +1,15 @@
+{.tabset .tabset-fade .tabset-pills}
+
+class.source = "important"
+
+class.output = "bg-warning"
+
+"bg-primary"
+
+"bg-success"
+
+"bg-info"
+
+"bg-warning"
+
+"bg-danger"
